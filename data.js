@@ -13,38 +13,25 @@ var config = {
 
 firebase.initializeApp(config);
 
+var database = firebase.database()
 
-// Whenever a user clicks the submit-bid
-// $("#submit-bid").on("click", function(event) {
-
-$("#add-employee").click(function(){
+$("#add-employee").on("click", function(){
   event.preventDefault()
 
   var name = $("#new-employee").val().trim()
   var role = $("#new-role").val().trim()
   var startDate = $("#start-date").val().trim()
   var monthlyRate = parseInt($("#monthly-rate").val().trim())
-})
+  var monthsWorked = monthDiff(new Date(startDate)  , new Date() )
+  var totalBilled = monthsWorked * monthlyRate
 
-console.log(name);
-console.log(role);
-
-function monthDiff(d1, d2) {
-  var months;
-  months = (d2.getFullYear() - d1.getFullYear()) * 12;
-  months -= d1.getMonth() + 1;
-  months += d2.getMonth();
-  return months <= 0 ? 0 : months;
-}
-
-var monthsWorked = monthDiff(new Date(startDate)  , new Date() )
-
-console.log(monthsWorked);
-var totalBilled = monthsWorked * monthlyRate
-console.log(totalBilled);
+  $("#new-employee").val("");
+  $("#new-role").val("");
+  $("#start-date").val("");
+  $("#monthly-rate").val("")
 
 
-firebase.ref().push({
+  database.ref().push({
   name : name,
   role : role,
   startDate : startDate,
@@ -54,3 +41,29 @@ firebase.ref().push({
 
 
 })
+})
+
+function monthDiff(d1, d2) {
+  var months;
+  months = (d2.getFullYear() - d1.getFullYear()) * 12;
+  months -= d1.getMonth() + 1;
+  months += d2.getMonth();
+  return months <= 0 ? 0 : months;
+
+}
+
+var ref = database.ref()
+
+ref.on("child_added", function(childSnapshot) {
+  var newPost = childSnapshot.val();
+
+  $("#info-area").append("<tr>")
+  $("#info-area").append("<td>" + newPost.name + "</td>")
+  $("#info-area").append("<td>" + newPost.role + "</td>")
+  $("#info-area").append("<td>" + newPost.startDate + "</td>")
+  $("#info-area").append("<td>" + newPost.monthsWorked + "</td>")
+  $("#info-area").append("<td>" + newPost.monthlyRate + "</td>")
+  $("#info-area").append("<td>" + newPost.totalBilled + "</td>")
+  $("#info-area").append("</tr>")
+
+});
