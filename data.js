@@ -1,3 +1,4 @@
+
 /* global moment firebase */
 
 // Initialize Firebase
@@ -50,5 +51,6 @@ firebase.ref().push({
   monthsWorked : monthsWorked,
   monthlyRate : monthlyRate,
   totalBilled : totalBilled
+
 
 })
