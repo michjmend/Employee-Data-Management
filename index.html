@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="UTF-8">
-  <title>CoderBay</title>
+  <title>Employee Data Management</title>
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -15,7 +15,7 @@
   <link href="./style.css">
 
   <!-- Firebase Reference -->
-  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
 
 </head>
 
@@ -31,54 +31,54 @@
       <h3 class="text-center text-white">A Comprehensive Directory of Employee Billable Hours</h3>
     </div>
 
-  <div class="row">
-  <div class="col-lg-12">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="text-center">Current Employees</h4>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="text-center">Current Employees</h4>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  </div>
-  <div class="row">
-  <div class="col-lg-12">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <!-- <div class="col-sm-4 col-sm-offset-2"> -->
-            <table class="table text-left">
-              <thead>
-                <tr>
-                  <th scope="col-sm-2">Employee Name</th>
-                  <th scope="col-sm-2">Role</th>
-                  <th scope="col-sm-2">Start Date</th>
-                  <th scope="col-sm-2">Months worked</th>
-                  <th scope="col-sm-2">Monthly Rate</th>
-                  <th scope="col-sm-2">Total Billed</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"></th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <!-- <div class="col-sm-4 col-sm-offset-2"> -->
+                <table class="table text-left">
+                  <thead>
+                    <tr>
+                      <th scope="col-sm-2">Employee Name</th>
+                      <th scope="col-sm-2">Role</th>
+                      <th scope="col-sm-2">Start Date</th>
+                      <th scope="col-sm-2">Months worked</th>
+                      <th scope="col-sm-2">Monthly Rate</th>
+                      <th scope="col-sm-2">Total Billed</th>
+                    </tr>
+                  </thead>
+                  <tbody id="info-area">
+
+                      <!-- <th scope="row" id="info-area"></th> -->
+                      <!-- <td></td>
+                      <td></td>
+                      <td></td> -->
+
+                    <!-- <tr>
+                      <th scope="row"></th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr> -->
+                  </tbody>
+                </table>
+              </div>
               <!-- <div class="col-sm-6">
                 <h3 class="">
                   <strong></strong>
@@ -96,52 +96,53 @@
     </div>
 
     <!-- Make Your Bid -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card card-body">
-          <div class="card-header">
-           Add Employee
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="employee-name">Employee Name</label>
-                <input class="form-control" id="employee-name" type="text">
-              </div>
-              <div class="form-group">
-                <label for="role">Role</label>
-                <input class="form-control" id="role" type="number">
-              </div>
-              <div class="form-group">
-                <label for="start-date">Start Date</label>
-                <input class="form-control" id="start-date" type="text" placeholder="mm/dd/yyyy">
-              </div>
-              <!-- <div class="form-group">
-                <label for="months-worked">Months Worked</label>
-                <input class="form-control" id="months-worked" type="text">
-              </div> -->
-              <div class="form-group">
-                <label for="montly-rate">Monthly Rate</label>
-                <input class="form-control" id="montly-rate" type="text">
-              </div>
-              <!-- <div class="form-group">
-                <label for="total-billed">Total billed</label>
-                <input class="form-control" id="total-billed" type="text">
-              </div> -->
-              <button class="btn btn-primary" id="submit" type="submit">Submit</button>
-            </form>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card card-body">
+            <div class="card-header">
+              Add Employee
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <label for="new-employee">Employee Name</label>
+                  <input class="form-control" id="new-employee" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="new-role">Role</label>
+                  <input class="form-control" id="new-role" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="start-date">Start Date</label>
+                  <input class="form-control" id="start-date" type="text" placeholder="mm/dd/yyyy">
+                </div>
+                <!-- <div class="form-group">
+                  <label for="months-worked">Months Worked</label>
+                  <input class="form-control" id="months-worked" type="text">
+                </div> -->
+                <div class="form-group">
+                  <label for="monthly-rate">Monthly Rate</label>
+                  <input class="form-control" id="monthly-rate" type="text">
+                </div>
+                <!-- <div class="form-group">
+                  <label for="total-billed">Total billed</label>
+                  <input class="form-control" id="total-billed" type="text">
+                </div> -->
+                <button class="btn btn-primary" id="add-employee" type="submit">Submit</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
 
-  </div>
+    <!-- JavaScript -->
 
-  <!-- JavaScript -->
-  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-  <script src="./data.js"
 
-</body>
+    <script src="./data.js"></script>
 
-</html>
+  </body>
+
+  </html>
